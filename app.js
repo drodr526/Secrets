@@ -11,7 +11,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const TwitterStrategy = require("passport-twitter").Strategy;
 
-mongoose.connect('mongodb://localhost:27017/userDB');
+mongoose.connect('mongodb+srv://dannyisfree:No2Mqz0jyZ304X5g@cluster0.hpyyo.mongodb.net/secretsDB?retryWrites=true&w=majority');
 
 const app = express();
 
