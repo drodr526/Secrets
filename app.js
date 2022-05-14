@@ -11,7 +11,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const TwitterStrategy = require("passport-twitter").Strategy;
 
-mongoose.connect('mongodb+srv://dannyisfree:No2Mqz0jyZ304X5g@cluster0.hpyyo.mongodb.net/secretsDB?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
@@ -38,7 +38,7 @@ const User = new mongoose.model("user", userSchema);
 const Secret = new mongoose.model("secret", secretSchema);
 
 app.use(session({
-    secret: "This is our little secret.",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -134,7 +134,6 @@ app.post("/register", function (req, res) {
             });
         }
     });
-
 });
 
 app.get('/auth/google',
@@ -164,7 +163,6 @@ app.get("/secrets", function (req, res) {
             res.render("secrets.ejs", { secretsList: secrets });
         }
     });
-
 });
 
 app.get("/submit", function (req, res) {
